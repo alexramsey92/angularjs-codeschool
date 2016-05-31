@@ -22,6 +22,14 @@ app.controller('PanelController', function(){
 	}
 })
 
+  app.controller('GalleryController', function() {
+    this.imageIndex = 0;
+    this.currentImageChange = function(imageNumber) {
+      console.log(imageNumber);
+      this.imageIndex = imageNumber || 0;
+    };
+  });
+
 var gems = [
 
 {
@@ -30,11 +38,11 @@ var gems = [
 	description: 'Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.',
 	canPurchase: true,
 	soldOut: true,
-	images: [{
-      0: 'img/gem-02.gif',
-      1: 'img/gem-05.gif',
-      2: 'img/gem-09.gif'
-	}]
+	images: [
+      'img/gem-02.gif',
+      'img/gem-05.gif',
+      'img/gem-09.gif'
+	]
 },
 
 {
@@ -43,11 +51,11 @@ var gems = [
 	description: 'Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.',
 	canPurchase: true,
 	soldOut: false,
-	images: [{
-      0: 'img/gem-01.gif',
-      1: 'img/gem-03.gif',
-      2: 'img/gem-04.gif'
-	}]
+	images: [
+      'img/gem-01.gif',
+      'img/gem-03.gif',
+      'img/gem-04.gif'
+	]
 }
 
 ];

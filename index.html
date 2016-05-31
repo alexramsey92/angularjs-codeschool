@@ -7,6 +7,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 		<script src="app.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/style.css" />
 
 	</head>
 
@@ -55,13 +56,16 @@
 				
 							</div>
 						</div>
-						<div class="gallery col-md-6" ng-show="product.images.length">
-							<ul class="clearfix">
-								<li class="img-thumbnail pull-right" ng-repeat="image in product.images">
-								  <img ng-src="{{image[0]}}" />
-								</li>
-							</ul>
-						</div>
+				        <div class="col-md-6" ng-show="product.images.length" ng-controller="GalleryController as gallery">
+				          <div class="img-wrap">
+				            <img ng-src="{{product.images[gallery.imageIndex]}}" class="img-thumbnail center-block" />
+				          </div>
+				          <ul class="img-thumbnails clearfix">
+				            <li class="small-image pull-left thumbnail" ng-repeat="image in product.images" ng-click="gallery.currentImageChange($index)">
+				              <img ng-src="{{image}}" />
+				            </li>
+				          </ul>
+				        </div>
 					</div>
 				</li>
 			</ul>
