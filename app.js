@@ -10,10 +10,13 @@ app.controller('StoreController', function(){
 });
 
 app.controller('PanelController', function(){
+	// make the first tab displayed equal to tab with the value of 1
 	this.tab = 1;
+	// set the tab by passing in the number of the current selection
 	this.selectTab = function(setTab) {
 		this.tab = setTab;
 	}
+	// check if the tab is selected or not at that moment and return a boolean here
 	this.isSelected = function(checkTab) {
 		return this.tab === checkTab;
 	}
