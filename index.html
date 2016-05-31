@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="store">
+
+	<head>
+
+		<title>Angular Gem Store</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		<script src="app.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	</head>
+
+	<body>
+
+	    <header>
+	      <h1 class="text-center">Flatlander Crafted Gems</h1>
+	      <h2 class="text-center">~ an AngularJS store ~</h2>
+	    </header>
+
+		<div class="container" ng-controller="StoreController as store">
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="product in store.products | orderBy:'-price' ">
+					<div class="row">
+						<div class="col-md-6">
+							<h1>{{product.name | uppercase}}</h1>
+							<h3>{{product.price | currency}} <button class="btn btn-default" ng-show="product.canPurchase"><span class="glyphicon glyphicon-shopping-cart"></span>
+							 Add To Cart</button></h3>
+
+							<div ng-controller="PanelController as panel">
+
+								<ul class="nav nav-pills">
+									<li ng-class="{ active:panel.isSelected(1) }"> 
+										<a href ng-click="panel.selectTab(1)">Description</a>
+									</li>
+									<li ng-class="{ active:panel.isSelected(2) }"> 
+										<a href ng-click="panel.selectTab(2)">Specifications</a>
+									</li>
+									<li ng-class="{ active:panel.isSelected(3) }"> 
+										<a href ng-click="panel.selectTab(3)">Reviews</a>
+									</li>
+								</ul>
+
+								<div class="panel" ng-show="panel.isSelected(1)">
+									<h4>Description</h4>
+									<p>{{product.description}}</p>
+								</div>
+								<div class="panel" ng-show="panel.isSelected(2)">
+									<h4>Specifications</h4>
+									<p>None Yet</p>
+								</div>
+								<div class="panel" ng-show="panel.isSelected(3)">
+									<h4>Reviews</h4>
+									<p>{{product.review}}</p>
+								</div>
+				
+							</div>
+						</div>
+						<div class="gallery col-md-6" ng-show="product.images.length">
+							<ul class="clearfix">
+								<li class="img-thumbnail pull-right" ng-repeat="image in product.images">
+								  <img ng-src="{{image[0]}}" />
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</body>
+
+</html>
